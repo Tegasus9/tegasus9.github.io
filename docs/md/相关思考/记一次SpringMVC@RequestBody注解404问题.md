@@ -193,15 +193,15 @@ restTemplate.getMessageConverters().set(1,new StringHttpMessageConverter(Standar
 
 但实际查资料和探索所花费的时间却远远不止更改配置项这么点。debug结束后仍然还有许多疑问等着未来的自己进行揭发，比如
 
-### `<mvc:annotation-driven/>` 到底做了些什么事？
+`<mvc:annotation-driven/>`**到底做了些什么事？**
 
-### 该注解驱动在何处影响返回头？
+**该注解驱动在何处影响返回头？**
 
-### 为什么不启用该配置项时会无法使用@RequestBody注解并导致404？
+ **为什么不启用该配置项时会无法使用@RequestBody注解并导致404？**
 
 
 
-# 2022年4月18日14:09:02
+# 2022年4月18日 勘误后记
 
 **然而，事实的真相远非如此。相信一些经验丰厚的大佬们能从前篇文章中看出端倪。**
 
