@@ -57,7 +57,20 @@ OK，可以用，但不是完全能用，名字都不是我的，估计要修改
 
 ![image-20220420155737182](https://my-first-picture-bed.oss-cn-guangzhou.aliyuncs.com/pic-bed/202204201557214.png)
 
-然后将`clientId`和`clientSecret`填上自己的。
+然后将`clientId`和`clientSecret`填上自己的。就像这样
+
+```js
+    var gitalkConfig = {
+      clientID: '你的clientId',
+      clientSecret: '你的clientSecret',
+      repo: 'Tegasus9.github.io',
+      owner: 'Tegasus9',
+      admin: ["Tegasus9"],
+      distractionFreeMode: true,
+    };
+```
+
+
 
 这次总该行了吧。
 
@@ -70,6 +83,22 @@ OK，可以用，但不是完全能用，名字都不是我的，估计要修改
 ### 4.增加proxy代理
 
 将`gitalk 403`问题放到百度去查找一番。发现gitalk其实默认用的是`https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token`这个网址进行跨域请求。而这个请求在`2021.1.31`开始就不再作为开放的代理服务了。那么我们请求这个地址就自然会报403错误。我们得自行更换代理地址。第一次碰见这类问题，手头上也没什么好的代理服务器，于是照搬了博客里的这个代理地址请求：`https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token`
+
+然后就像这样修改配置。
+
+```js
+    var gitalkConfig = {
+      clientID: '你的clientId',
+      clientSecret: '你的clientSecret',
+      repo: 'Tegasus9.github.io',
+      owner: 'Tegasus9',
+      admin: ["Tegasus9"],
+      distractionFreeMode: true,
+      proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+    };
+```
+
+
 
 再次尝试。
 
@@ -94,6 +123,22 @@ OK。很痛苦。
 **不过当时这个教程里修改github仓库里`index.js`这部分我却没有看懂。**比如黑白名单这一块，我只是访问github网站而已，那这黑白名单分别是什么呢？
 
 所以误以为需要将worker里的代码复制到仓库里的哪个地方所以作罢。不过worker已经申请好了，可以先试试。
+
+然后我们把worker的代理地址填入proxy中。就像这样
+
+```js
+    var gitalkConfig = {
+      clientID: '',
+      clientSecret: '',
+      repo: 'Tegasus9.github.io',
+      owner: 'Tegasus9',
+      admin: ["Tegasus9"],
+      distractionFreeMode: true,
+      proxy: 'https://你的worker代理地址/?https://github.com/login/oauth/access_token'
+    };
+```
+
+
 
 于是再次打开博客，登陆github，一气呵成。看到的却依旧是`Network Error`
 
