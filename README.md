@@ -1,1 +1,1 @@
-这里是GITHUB的readme.md
+Docsify静态页面博客仓库
